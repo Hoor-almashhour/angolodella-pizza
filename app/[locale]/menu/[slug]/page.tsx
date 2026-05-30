@@ -10,12 +10,17 @@ import {
 import { CategoryTabs } from "@/components/restaurant/CategoryTabs";
 import { MenuItemsList } from "@/components/restaurant/MenuItemsList";
 
+
 export async function generateStaticParams() {
   const categories = await getMenuCategories();
+  const locales = ["ar", "de"];
 
-  return categories.map((c) => ({
-    slug: c.slug,
-  }));
+  return locales.flatMap((locale) =>
+    categories.map((c) => ({
+      locale,
+      slug: c.slug,
+    }))
+  );
 }
 
 type Props = {

@@ -32,7 +32,7 @@ export function CategoryTabs({ categories, locale, activeSlug }: CategoryTabsPro
                 alt={t(cat.name, locale)}
                 fill
                 className="object-cover"
-                sizes="88px"
+                sizes="95px"
               />
             </div>
             <p
