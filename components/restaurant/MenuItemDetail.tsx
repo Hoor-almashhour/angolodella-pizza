@@ -37,14 +37,14 @@ export function MenuItemDetail({ item, onClose }: MenuItemDetailProps) {
   return (
     <div className="fixed inset-0 z-[100] bg-white">
       <div className="relative mx-auto flex h-full max-w-lg flex-col">
-        <div className="relative h-[55vh] min-h-[280px] w-full shrink-0 bg-white">
+        <div className="relative h-[45vh] w-full shrink-0 bg-white">
           <Image
             src={item.image}
             alt={t(item.name, locale)}
             fill
             className="object-contain"
-             sizes="(max-width: 768px) 100vw, 512px"
-             quality={90}
+             sizes="(max-width: 768px) 85vw, 512px"
+
             priority
           />
           <button

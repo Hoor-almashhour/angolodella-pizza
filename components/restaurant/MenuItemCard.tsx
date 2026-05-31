@@ -26,13 +26,14 @@ export function MenuItemCard({ item, onSelect }: MenuItemCardProps) {
       }}
       className="flex w-full cursor-pointer gap-3 rounded-2xl bg-white p-3 text-start shadow-md transition-shadow active:shadow-sm"
     >
-      <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl">
+      <div className="relative h-35 w-35 shrink-0 overflow-hidden rounded-xl">
         <Image
           src={item.image}
           alt={t(item.name, locale)}
           fill
           className="object-cover"
-          sizes="96px"
+          sizes="(max-width: 768px) 85vw, 512px"
+          quality={90}
         />
       </div>
       <div className="flex min-w-0 flex-1 flex-col justify-between">
