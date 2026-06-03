@@ -4,14 +4,13 @@ import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { SOCIAL_LINKS } from "@/lib/constants";
-import { FaInstagram, FaFacebookF, FaLinkedinIn, FaYoutube } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
 import { EASING } from "@/lib/constants";
 
 const socials = [
-  { icon: FaInstagram, href: SOCIAL_LINKS.instagram, label: "Instagram" },
+ 
   { icon: FaFacebookF, href: SOCIAL_LINKS.facebook, label: "Facebook" },
-  { icon: FaLinkedinIn, href: SOCIAL_LINKS.linkedin, label: "LinkedIn" },
-  { icon: FaYoutube, href: SOCIAL_LINKS.youtube, label: "YouTube" },
+  
 ];
 
 const links = ["about", "services", "projects", "gallery", "contact"] as const;
