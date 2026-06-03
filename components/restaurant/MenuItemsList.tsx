@@ -28,7 +28,10 @@ export function MenuItemsList({ items }: MenuItemsListProps) {
     <>
       <section className="space-y-3 px-4 pb-6 pt-2">
         {items.map((item) => (
-          <MenuItemCard key={item.id} item={item} onSelect={() => openItem(item)} />
+          <MenuItemCard key={item.id} 
+          item={item}
+          
+           onSelect={() => openItem(item)} />
         ))}
       </section>
       {selected && (

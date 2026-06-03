@@ -67,8 +67,8 @@ export function MenuItemDetail({ item, onClose }: MenuItemDetailProps) {
           </p>
         </div>
 
-        <div className="fixed inset-x-0 bottom-0 z-[81] mx-auto max-w-lg border-t border-zinc-200 bg-white px-4 py-3 pb-28 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
-          <div className="flex items-center justify-between gap-3">
+        <div className="fixed inset-x-0 bottom-0 z-[81] mx-auto max-w-lg border-t border-zinc-200 bg-white px-4 py-3 pb-32 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+          <div className="flex items-center justify-between gap-5">
             <div className="flex shrink-0 items-center gap-2">
               <button
                 type="button"

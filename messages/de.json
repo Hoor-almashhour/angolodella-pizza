@@ -21,8 +21,26 @@
       "close": "Schließen",
       "whatsapp": "WhatsApp",
       "location": "Standort",
-      "video": "Video"
+       "admin": "Kontrollfeld"
     },
+
+      
+  "Login": {
+    "title": "Anmelden",
+    "email": "E-Mail-Adresse",
+    "emailPlaceholder": "E-Mail eingeben",
+    "password": "Passwort",
+    "passwordPlaceholder": "Passwort eingeben",
+    "remember": "Angemeldet bleiben",
+    "forgot": "Passwort vergessen?",
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "loading": "Anmeldung läuft...",
+    "loginSuccess": "Erfolgreich angemeldet",
+    "loginError": "Anmeldung fehlgeschlagen",
+    "logoutSuccess": "Erfolgreich abgemeldet"
+    },
+
     "item": {
       "close": "Schließen",
       "addToCart": "In den Warenkorb",

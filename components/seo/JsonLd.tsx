@@ -12,7 +12,7 @@ export function JsonLd({ locale, description }: JsonLdProps) {
     name: locale === "ar" ? SITE_NAME : SITE_NAME_DE,
     url: `${SITE_URL}/${locale}`,
     description,
-    telephone: "+491777215318",
+    telephone: "+4915569297516",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Lichtenfelser Str 49",
@@ -20,7 +20,7 @@ export function JsonLd({ locale, description }: JsonLdProps) {
       addressCountry: "DE",
     },
     sameAs: [
-      "https://facebook.com",
+      "https://www.facebook.com/share/1CaT43Gnrq",
     ],
   };
 

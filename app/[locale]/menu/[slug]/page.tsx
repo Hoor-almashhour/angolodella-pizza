@@ -35,12 +35,14 @@ export default async function MenuCategoryPage({
 }: Props) {
   const { locale, slug } = await params;
 
+  const decodedSlug = decodeURIComponent(slug);
+
   setRequestLocale(locale);
 
   const [categories, category] = await Promise.all([
-    getMenuCategories(),
-    getCategoryBySlug(slug),
-  ]);
+  getMenuCategories(),
+  getCategoryBySlug(decodedSlug),
+]);
 
   if (!category) {
     notFound();
@@ -53,7 +55,7 @@ export default async function MenuCategoryPage({
       <CategoryTabs
         categories={categories}
         locale={locale}
-        activeSlug={slug}
+         activeSlug={decodedSlug}
       />
 
       {items.length === 0 ? (

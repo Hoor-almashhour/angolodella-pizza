@@ -21,8 +21,25 @@
       "close": "إغلاق",
       "whatsapp": "واتساب",
       "location": "الموقع",
-      "video": "فيديو"
+      "admin": "لوحة التحكم"
     },
+    
+    "Login": {
+      "title": "تسجيل الدخول",
+      "email": "عنوان البريد الإلكتروني",
+      "emailPlaceholder": "أدخل بريدك الإلكتروني",
+      "password": "كلمة المرور",
+      "passwordPlaceholder": "أدخل كلمة المرور",
+      "remember": "تذكرني",
+      "forgot": "هل نسيت كلمة المرور؟",
+      "login": "تسجيل الدخول",
+      "logout": "تسجيل الخروج",
+      "loading": "جاري تسجيل الدخول...",
+       "loginSuccess": "تم تسجيل الدخول بنجاح",
+      "loginError": "فشل تسجيل الدخول",
+      "logoutSuccess": "تم تسجيل الخروج بنجاح"
+    },
+  
     "item": {
       "close": "إغلاق",
       "addToCart": "أضف الى السلة",

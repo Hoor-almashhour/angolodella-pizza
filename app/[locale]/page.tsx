@@ -1,9 +1,10 @@
 import { setRequestLocale } from "next-intl/server";
+import Link from "next/link";
 
 import { getMenuCategories } from "@/lib/menu";
 import { CategoryCard } from "@/components/restaurant/CategoryCard";
 import { HomeFooter } from "@/components/restaurant/HomeFooter";
-
+import AdminButton from "@/components/restaurant/AdminButton";
 type Props = {
   params: Promise<{
     locale: string;
@@ -21,16 +22,18 @@ export default async function HomePage({
 
   return (
     <div className="relative z-10 mx-auto max-w-lg">
+      
       <section className="grid grid-cols-2 gap-3 px-4 pb-2 pt-2">
         {categories.map((category) => (
           <CategoryCard
             key={category.id}
             category={category}
             locale={locale}
-          />
+            />
         ))}
+       
       </section>
-
+         <AdminButton locale={locale} />
       <HomeFooter />
     </div>
   );

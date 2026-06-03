@@ -24,7 +24,7 @@ export function CartDrawer() {
         <CartDrawerHeader tr={tr} setIsOpen={setIsOpen} clearCart={clearCart} lines={lines} />
         <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-4">
           {lines.length === 0 ? (
-            <p className="py-8 text-center text-zinc-500">{tr("empty")}</p>
+            <p className="py-8 text-center text-black">{tr("empty")}</p>
           ) : (
             <ul className="space-y-3">
               {lines.map(({ item, quantity }) => (
@@ -42,11 +42,11 @@ export function CartDrawer() {
                     <button
                       type="button"
                       onClick={() => removeItem(item.id)}
-                      className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-100"
+                      className="flex h-8 w-8 items-center justify-center rounded-full  text-gray-600 bg-zinc-100"
                     >
                       <HiMinus />
                     </button>
-                    <span className="w-6 text-center font-bold">{quantity}</span>
+                    <span className="w-6 text-center font-bold text-gray-500">{quantity}</span>
                     <button
                       type="button"
                       onClick={() => addItem(item)}
@@ -88,7 +88,7 @@ function CartDrawerHeader({
 }) {
   return (
     <div className="flex items-center justify-between border-b border-zinc-200 p-4">
-      <h2 className="text-lg font-bold">{tr("title")}</h2>
+      <h2 className="text-lg font-bold text-black">{tr("title")}</h2>
       <div className="flex gap-2">
         {lines.length > 0 && (
           <button type="button" onClick={clearCart} className="text-sm text-red-600">
@@ -96,7 +96,7 @@ function CartDrawerHeader({
           </button>
         )}
         <button type="button" onClick={() => setIsOpen(false)}>
-          <HiX className="text-2xl" />
+          <HiX className="text-2xl text-gray-400" />
         </button>
       </div>
     </div>
