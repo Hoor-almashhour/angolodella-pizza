@@ -61,7 +61,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }
       return [...prev, { item, quantity }];
     });
-    setIsOpen(true);
+  
   }, []);
 
   const addItem = useCallback(

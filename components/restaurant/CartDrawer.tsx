@@ -1,104 +1,210 @@
-"use client";
+  "use client";
 
-import { useLocale, useTranslations } from "next-intl";
-import { HiX, HiMinus, HiPlus } from "react-icons/hi";
-import { useCart } from "./CartProvider";
-import { formatPrice, t } from "@/lib/menu-utils";
+  import { useLocale, useTranslations } from "next-intl";
+  import { HiX, HiMinus, HiPlus } from "react-icons/hi";
+  import { FaWhatsapp } from "react-icons/fa";
+  import { useCart } from "./CartProvider";
+  import { formatPrice, t } from "@/lib/menu-utils";
 
-export function CartDrawer() {
+  export function CartDrawer() {
   const tr = useTranslations("restaurant.cart");
   const locale = useLocale();
-  const { lines, isOpen, setIsOpen, removeItem, addItem, totalPrice, clearCart } = useCart();
+
+  const {
+  lines,
+  isOpen,
+  setIsOpen,
+  removeItem,
+  addItem,
+  totalPrice,
+  clearCart,
+  } = useCart();
 
   if (!isOpen) return null;
 
-  return (
-    <>
-      <button
-        type="button"
-        className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
-        onClick={() => setIsOpen(false)}
-        aria-label="Close"
-      />
-      <aside className="fixed left-1/2 top-1/2 z-[70] flex max-h-[85vh] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
-        <CartDrawerHeader tr={tr} setIsOpen={setIsOpen} clearCart={clearCart} lines={lines} />
-        <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-4">
-          {lines.length === 0 ? (
-            <p className="py-8 text-center text-black">{tr("empty")}</p>
-          ) : (
-            <ul className="space-y-3">
-              {lines.map(({ item, quantity }) => (
-                <li
-                  key={item.id}
-                  className="flex items-center justify-between gap-3 border-b border-zinc-100 pb-3"
-                >
-                  <div className="min-w-0 flex-1">
-                    <p className="font-semibold text-zinc-900">{t(item.name, locale)}</p>
-                    <p className="text-sm text-emerald-600">
-                      {formatPrice(item.price, locale)} × {quantity}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => removeItem(item.id)}
-                      className="flex h-8 w-8 items-center justify-center rounded-full  text-gray-600 bg-zinc-100"
-                    >
-                      <HiMinus />
-                    </button>
-                    <span className="w-6 text-center font-bold text-gray-500">{quantity}</span>
-                    <button
-                      type="button"
-                      onClick={() => addItem(item)}
-                      className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f5c518]"
-                    >
-                      <HiPlus />
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        {lines.length > 0 && (
-          <div className="border-t border-zinc-200 px-4 py-4">
-            <div className="flex items-center justify-between">
-              <span className="font-semibold">{tr("total")}</span>
-              <span className="text-xl font-bold text-emerald-600">
-                {formatPrice(totalPrice, locale)}
-              </span>
-            </div>
-          </div>
-        )}
-      </aside>
-    </>
-  );
-}
 
-function CartDrawerHeader({
+  const whatsappNumber = "4915569297516";
+
+  const createWhatsappMessage = () => {
+  const isGerman = locale === "de";
+
+  const items = lines
+  .map((line) => {
+  const itemName =
+    locale === "de"
+      ? line.item.name.de
+      : line.item.name.ar;
+
+  return isGerman
+    ? `*${itemName}*
+
+  Menge: ${line.quantity}
+  Preis: ${formatPrice(
+        line.item.price * line.quantity,
+        locale
+      )}`
+    : `*${itemName}*
+
+  الكمية: ${line.quantity}
+  السعر: ${formatPrice(
+        line.item.price * line.quantity,
+        locale
+      )}`;
+  })
+  .join("\n\n");
+
+  return isGerman
+  ? `Ich möchte folgende Artikel bestellen:
+
+  ${items}
+
+  *Gesamt: ${formatPrice(totalPrice, locale)}*`
+  : `أريد طلب الأصناف التالية:
+
+  ${items}
+
+  *المجموع: ${formatPrice(totalPrice, locale)}*`;
+  };
+
+  const sendWhatsappOrder = () => {
+  const message = createWhatsappMessage();
+
+  window.open(
+  `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+  "_blank"
+  );
+  };
+
+  return (
+  <>
+  <button
+  type="button"
+  className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
+  onClick={() => setIsOpen(false)}
+  aria-label="Close"
+  />
+
+  <aside className="fixed left-1/2 top-1/2 z-[70] flex max-h-[85vh] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+  <CartDrawerHeader
+    tr={tr}
+    setIsOpen={setIsOpen}
+    clearCart={clearCart}
+    lines={lines}
+  />
+
+  <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-4">
+    {lines.length === 0 ? (
+      <p className="py-8 text-center text-black">
+        {tr("empty")}
+      </p>
+    ) : (
+      <ul className="space-y-3">
+        {lines.map(({ item, quantity }) => (
+          <li
+            key={item.id}
+            className="flex items-center justify-between gap-3 border-b border-zinc-100 pb-3"
+          >
+            <div className="min-w-0 flex-1">
+              <p className="font-semibold text-zinc-900">
+                {t(item.name, locale)}
+              </p>
+
+              <p className="text-sm text-emerald-600">
+                {formatPrice(item.price, locale)} × {quantity}
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => removeItem(item.id)}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-100 text-gray-600"
+              >
+                <HiMinus />
+              </button>
+
+              <span className="w-6 text-center font-bold text-gray-500">
+                {quantity}
+              </span>
+
+              <button
+                type="button"
+                onClick={() => addItem(item)}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f5c518]"
+              >
+                <HiPlus />
+              </button>
+            </div>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+
+  {lines.length > 0 && (
+    <div className="border-t border-zinc-200 px-4 py-4">
+      <div className="mb-4 flex items-center justify-between">
+        <span className="font-semibold">
+          {tr("total")}
+        </span>
+
+        <span className="text-xl font-bold text-emerald-600">
+          {formatPrice(totalPrice, locale)}
+        </span>
+      </div>
+
+      <button
+        onClick={sendWhatsappOrder}
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 py-3 font-bold text-white transition hover:bg-green-700"
+      >
+        <FaWhatsapp size={22} />
+
+        {locale === "de"
+          ? "Bestellung per WhatsApp senden"
+          : "إرسال الطلب عبر واتساب"}
+      </button>
+    </div>
+  )}
+  </aside>
+  </>
+  );
+  }
+
+  function CartDrawerHeader({
   tr,
   setIsOpen,
   clearCart,
   lines,
-}: {
+  }: {
   tr: (key: string) => string;
   setIsOpen: (v: boolean) => void;
   clearCart: () => void;
   lines: unknown[];
-}) {
+  }) {
   return (
-    <div className="flex items-center justify-between border-b border-zinc-200 p-4">
-      <h2 className="text-lg font-bold text-black">{tr("title")}</h2>
-      <div className="flex gap-2">
-        {lines.length > 0 && (
-          <button type="button" onClick={clearCart} className="text-sm text-red-600">
-            {tr("clear")}
-          </button>
-        )}
-        <button type="button" onClick={() => setIsOpen(false)}>
-          <HiX className="text-2xl text-gray-400" />
-        </button>
-      </div>
-    </div>
+  <div className="flex items-center justify-between border-b border-zinc-200 p-4">
+  <h2 className="text-lg font-bold text-black">
+  {tr("title")}
+  </h2>
+
+  <div className="flex gap-2">
+  {lines.length > 0 && (
+    <button
+      type="button"
+      onClick={clearCart}
+      className="text-sm text-red-600"
+    >
+      {tr("clear")}
+    </button>
+  )}
+
+  <button
+    type="button"
+    onClick={() => setIsOpen(false)}
+  >
+    <HiX className="text-2xl text-gray-400" />
+  </button>
+  </div>
+  </div>
   );
 }

@@ -14,6 +14,8 @@ interface MenuItemDetailProps {
 }
 
 export function MenuItemDetail({ item, onClose }: MenuItemDetailProps) {
+
+  const [showToast, setShowToast] = useState(false);
   const locale = useLocale();
   const tr = useTranslations("restaurant.item");
   const { addItemWithQuantity } = useCart();
@@ -29,13 +31,26 @@ export function MenuItemDetail({ item, onClose }: MenuItemDetailProps) {
   const decrease = () => setQuantity((q) => Math.max(1, q - 1));
   const increase = () => setQuantity((q) => q + 1);
 
+  
   const handleAdd = () => {
-    addItemWithQuantity(item, quantity);
-    onClose();
-  };
+  addItemWithQuantity(item, quantity);
 
+  setShowToast(true);
+
+  setTimeout(() => {
+    setShowToast(false);
+    onClose();
+  }, 1500);
+};
   return (
     <div className="fixed inset-0 z-[100] bg-white">
+      {showToast && (
+        <div className="fixed left-0 right-0 top-0 z-[200] bg-green-600 px-4 py-5 text-center text-lg font-bold text-white shadow-lg">
+          {locale === "de"
+            ? `${quantity} × ${item.name.de} wurde zum Warenkorb hinzugefügt`
+            : `${quantity} × ${item.name.ar} تمت الإضافة إلى السلة`}
+        </div>
+      )}
       <div className="relative mx-auto flex h-full max-w-lg flex-col">
         <div className="relative h-[45vh] w-full shrink-0 bg-white">
           <Image
