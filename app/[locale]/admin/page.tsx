@@ -16,7 +16,7 @@ type Category = {
   sort_order: number;
 };
 
-
+export const dynamic = "force-dynamic";
 
 export default function AdminPage() {
   const router = useRouter();
