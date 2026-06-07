@@ -29,7 +29,7 @@ type AdminMenuItem = {
   featured: boolean;
   sort_order: number;
 };
-export const dynamic = "force-dynamic";
+
 export default function AdminItemsPage() {
 
  const [preview, setPreview] = useState("");
