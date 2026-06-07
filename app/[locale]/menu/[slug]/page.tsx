@@ -10,7 +10,8 @@ import {
 import { CategoryTabs } from "@/components/restaurant/CategoryTabs";
 import { MenuItemsList } from "@/components/restaurant/MenuItemsList";
 
-
+export const dynamic = "force-dynamic";
+export const dynamicParams = true;
 export async function generateStaticParams() {
   const categories = await getMenuCategories();
   const locales = ["ar", "de"];
